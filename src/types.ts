@@ -11,9 +11,12 @@ export interface Service {
 export interface Project {
   id: number;
   title: string;
-  category: 'Electrical' | 'Security' | 'Networking' | 'Satellite' | 'Automation';
+  category: 'Electrical' | 'Security' | 'Networking' | 'Satellite' | 'Automation' | 'Construction';
   description: string;
   image: string;
+  images?: string[];
+  video?: string;
+  location?: string;
 }
 
 export interface Testimonial {

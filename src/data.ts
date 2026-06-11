@@ -1,9 +1,22 @@
 import { Service, Project, Testimonial, Stat, CoreValue, TeamMember } from './types';
+
+// Team images
 import michaelImg from '@/assets/images/CEO.png';
 import theophilusImg from '@/assets/images/Theophilus Akuaku.png';
 import gladysImg from '@/assets/images/Safoa.png';
 import danielImg from '@/assets/images/Daniel Botchway.png';
 import isaacImg from '@/assets/images/Isaac Bentum.png';
+
+// Roofing project media
+import roofingBanner from '@/assets/projects/roofing/banner.jpg';
+import roofingImg1 from '@/assets/projects/roofing/WhatsApp Image 2025-12-07 at 7.00.15 PM.jpeg';
+import roofingImg2 from '@/assets/projects/roofing/WhatsApp Image 2025-12-07 at 7.00.16 PM.jpeg';
+import roofingImg3 from '@/assets/projects/roofing/WhatsApp Image 2025-12-07 at 7.00.15 PM (1).jpeg';
+import roofingVideo from '@/assets/projects/roofing/WhatsApp Video 2025-12-07 at 7.32.25 PM.mp4';
+
+// Aviation Social Centre project media
+import aviationVideo from '@/assets/projects/Aviation videos/IMG_2949.MP4';
+import aviationCardImg from '@/assets/images/banner1.jpg';
 
 export const CORE_VALUES: CoreValue[] = [
   {
@@ -44,10 +57,10 @@ export const CORE_VALUES: CoreValue[] = [
 ];
 
 export const STATISTICS: Stat[] = [
-  { id: 1, label: "Projects Completed", value: 280, suffix: "+", icon: "CheckSquare" },
-  { id: 2, label: "Years Experience", value: 8, suffix: "+", icon: "Calendar" },
-  { id: 3, label: "Satisfied Clients", value: 520, suffix: "+", icon: "Smile" },
-  { id: 4, label: "Response Time", value: 2, suffix: " hrs or less", icon: "Clock" }
+  { id: 1, label: "Projects Completed", value: 80, suffix: "+", icon: "CheckSquare" },
+  { id: 2, label: "Years Experience", value: 16, suffix: "+", icon: "Calendar" },
+  { id: 3, label: "Satisfied Clients", value: 40, suffix: "+", icon: "Smile" },
+  { id: 4, label: "Response Time", value: 1, suffix: " hr or less", icon: "Clock" }
 ];
 
 export const SERVICES: Service[] = [
@@ -189,6 +202,25 @@ export const SERVICES: Service[] = [
 ];
 
 export const PROJECTS: Project[] = [
+  {
+    id: 7,
+    title: "Roofing & Structural Installation – Tse Addo",
+    category: "Construction",
+    description: "Complete roofing framework and structural installation at Tse Addo, Accra. The Mikessat team executed the full metal roofing layout, structural fitting, and on-site commissioning for this residential property with skeleton structure.",
+    location: "Tse Addo, Accra",
+    image: roofingImg1,
+    images: [roofingImg1, roofingImg2, roofingImg3, roofingBanner],
+    video: roofingVideo,
+  },
+  {
+    id: 8,
+    title: "Aviation Social Centre – Adenta",
+    category: "Electrical",
+    description: "Full electrical installation and fitting works at the Aviation Social Centre, Adenta. Our certified engineers delivered clean, code-compliant wiring, conduit runs, and full system commissioning throughout the facility.",
+    location: "Adenta, Accra",
+    image: aviationCardImg,
+    video: aviationVideo,
+  },
   {
     id: 1,
     title: "Modern Smart Perimeter Control",
