@@ -20,6 +20,7 @@ export default function Contact({ preselectedService = '' }: ContactProps) {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [apiError, setApiError] = useState('');
 
   // Sync pre-selected service from other triggers
   useEffect(() => {
@@ -67,29 +68,32 @@ export default function Contact({ preselectedService = '' }: ContactProps) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setSubmitting(true);
+    setApiError('');
 
-    // Simulate reliable API post
-    setTimeout(() => {
-      setSubmitting(false);
-      setSubmitted(true);
-      
-      // Traditional alert fallback per guidelines
-      alert(`Thank you, ${formData.name}! Your quote request for "${formData.serviceType}" was received. Michael Bentum and our tech crew will phone you back shortly.`);
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        serviceType: '',
-        message: ''
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-    }, 1500);
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
+
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', serviceType: '', message: '' });
+    } catch (err) {
+      setApiError(err instanceof Error ? err.message : 'Failed to send. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -253,6 +257,13 @@ export default function Contact({ preselectedService = '' }: ContactProps) {
                       </p>
                     )}
                   </div>
+
+                  {/* API error */}
+                  {apiError && (
+                    <div className="flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 text-sm font-semibold px-4 py-3 rounded-lg">
+                      <AlertCircle size={16} className="shrink-0" /> {apiError}
+                    </div>
+                  )}
 
                   {/* Submit Button */}
                   <div className="pt-2">
