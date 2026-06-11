@@ -1,23 +1,25 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'motion/react';
+import { useEffect, useState, useRef } from 'react';
+import { motion, useInView } from 'motion/react';
 import { STATISTICS } from '../data';
 import { CheckCircle2, HeartHandshake } from 'lucide-react';
 import Icon from './Icon';
 
-// Custom Count Up Animator sub-component
-function SafeCounter({ value, duration = 1.8 }: { value: number; duration?: number }) {
+// Custom Count Up Animator sub-component — only runs when triggered (in view)
+function SafeCounter({ value, duration = 2, triggered }: { value: number; duration?: number; triggered: boolean }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    if (!triggered) return;
+
     let start = 0;
     const end = value;
-    if (start === end) return;
+    if (end === 0) return;
 
-    const totalMiliseconds = duration * 1000;
-    const stepTime = Math.max(Math.floor(totalMiliseconds / end), 20);
-    
+    const totalMs = duration * 1000;
+    const stepTime = Math.max(Math.floor(totalMs / end), 16);
+
     const timer = setInterval(() => {
-      start += Math.ceil(end / (totalMiliseconds / stepTime));
+      start += Math.ceil(end / (totalMs / stepTime));
       if (start >= end) {
         clearInterval(timer);
         setCount(end);
@@ -27,12 +29,15 @@ function SafeCounter({ value, duration = 1.8 }: { value: number; duration?: numb
     }, stepTime);
 
     return () => clearInterval(timer);
-  }, [value, duration]);
+  }, [value, duration, triggered]);
 
   return <span>{count}</span>;
 }
 
 export default function WhyChooseUs() {
+  const statsRef = useRef(null);
+  const statsInView = useInView(statsRef, { once: true, margin: '-80px' });
+
   const checklists = [
     {
       title: 'Certified Professionals',
@@ -67,7 +72,7 @@ export default function WhyChooseUs() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 font-sans">
         
         {/* Statistics section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-24 bg-slate-50 dark:bg-slate-900/40 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl p-8 md:p-12 shadow-sm">
+        <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-24 bg-slate-50 dark:bg-slate-900/40 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl p-8 md:p-12 shadow-sm">
           {STATISTICS.map((stat, idx) => (
             <motion.div
               key={stat.id}
@@ -81,7 +86,7 @@ export default function WhyChooseUs() {
                 <Icon name={stat.icon} size={22} />
               </div>
               <p className="text-3xl md:text-5xl font-black text-[#062B5B] dark:text-white tracking-tight leading-none mb-2">
-                <SafeCounter value={stat.value} />
+                <SafeCounter value={stat.value} triggered={statsInView} />
                 <span className="text-[#0A5C9E] dark:text-[#00d2ff]">{stat.suffix}</span>
               </p>
               <p className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold">
