@@ -10,6 +10,7 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Team from './components/Team';
+import WhatsAppButton from './components/WhatsAppButton';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
@@ -172,6 +173,9 @@ export default function App() {
 
       {/* Dynamic Footer */}
       <Footer />
+
+      {/* Floating WhatsApp Button */}
+      <WhatsAppButton />
     </div>
   );
 }
