@@ -1,0 +1,6 @@
+{
+  "name": "Mikessat Engineering",
+  "description": "Premium, modern corporate portal for Mikessat Engineering, delivering professional electrical, satellite, security, and automation services in Ghana.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
