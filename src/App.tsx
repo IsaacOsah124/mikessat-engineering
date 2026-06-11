@@ -40,6 +40,18 @@ export default function App() {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
+  const PAGE_TITLES: Record<string, string> = {
+    home: 'Mikessat Engineering | Electrical, CCTV, Satellite & Security Services in Ghana',
+    about: 'About Us | Mikessat Engineering – Ghana\'s Trusted Engineering Team',
+    services: 'Our Services | Electrical, CCTV, DSTV, Gate Automation & More – Mikessat Engineering',
+    projects: 'Our Projects | Completed Engineering Works – Mikessat Engineering Ghana',
+    contact: 'Contact Us | Get a Free Quote – Mikessat Engineering Ghana',
+  };
+
+  useEffect(() => {
+    document.title = PAGE_TITLES[currentPage] || PAGE_TITLES.home;
+  }, [currentPage]);
+
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase();
