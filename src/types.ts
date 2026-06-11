@@ -16,6 +16,7 @@ export interface Project {
   image: string;
   images?: string[];
   video?: string;
+  videos?: string[];
   location?: string;
 }
 

@@ -15,8 +15,15 @@ import roofingImg3 from '@/assets/projects/roofing/WhatsApp Image 2025-12-07 at 
 import roofingVideo from '@/assets/projects/roofing/WhatsApp Video 2025-12-07 at 7.32.25 PM.mp4';
 
 // Aviation Social Centre project media
-import aviationVideo from '@/assets/projects/Aviation videos/IMG_2949.MP4';
 import aviationCardImg from '@/assets/images/banner1.jpg';
+import aviationV1 from '@/assets/projects/Aviation videos/IMG_2645.MOV';
+import aviationV2 from '@/assets/projects/Aviation videos/IMG_2654.MOV';
+import aviationV3 from '@/assets/projects/Aviation videos/IMG_2658.MOV';
+import aviationV4 from '@/assets/projects/Aviation videos/IMG_2663.MOV';
+import aviationV5 from '@/assets/projects/Aviation videos/IMG_2664.MOV';
+import aviationV6 from '@/assets/projects/Aviation videos/IMG_2665.MOV';
+import aviationV7 from '@/assets/projects/Aviation videos/IMG_2681.MOV';
+import aviationV8 from '@/assets/projects/Aviation videos/IMG_2707.MOV';
 
 export const CORE_VALUES: CoreValue[] = [
   {
@@ -219,7 +226,7 @@ export const PROJECTS: Project[] = [
     description: "Full electrical installation and fitting works at the Aviation Social Centre, Adenta. Our certified engineers delivered clean, code-compliant wiring, conduit runs, and full system commissioning throughout the facility.",
     location: "Adenta, Accra",
     image: aviationCardImg,
-    video: aviationVideo,
+    videos: [aviationV1, aviationV2, aviationV3, aviationV4, aviationV5, aviationV6, aviationV7, aviationV8],
   },
   {
     id: 1,

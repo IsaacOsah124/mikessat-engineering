@@ -99,9 +99,10 @@ export default function Projects() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/35 to-transparent opacity-80 group-hover:opacity-85 transition-opacity duration-300" />
 
                 {/* Video badge */}
-                {project.video && (
+                {(project.video || project.videos) && (
                   <div className="absolute top-3 right-3 z-10 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded-full">
-                    <Play size={10} className="fill-white" /> VIDEO
+                    <Play size={10} className="fill-white" />
+                    {project.videos ? `${project.videos.length} VIDEOS` : 'VIDEO'}
                   </div>
                 )}
 
@@ -169,65 +170,115 @@ export default function Projects() {
                   <div className="grid grid-cols-1 md:grid-cols-12 overflow-auto">
                     {/* Media panel */}
                     <div className="md:col-span-8 bg-slate-950 flex flex-col">
-                      {/* Main image */}
-                      <div className="relative flex items-center justify-center min-h-[40vh] md:min-h-[55vh] flex-1">
-                        <img
-                          src={mediaList[mediaIndex]}
-                          alt={`${zoomProject.title} – photo ${mediaIndex + 1}`}
-                          className="max-h-[55vh] max-w-full object-contain"
-                        />
 
-                        {/* Prev / Next arrows */}
-                        {hasMultiple && (
-                          <>
-                            <button
-                              onClick={prev}
-                              disabled={mediaIndex === 0}
-                              className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white disabled:opacity-30 transition-all"
-                            >
-                              <ChevronLeft size={20} />
-                            </button>
-                            <button
-                              onClick={() => next(mediaList.length)}
-                              disabled={mediaIndex === mediaList.length - 1}
-                              className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white disabled:opacity-30 transition-all"
-                            >
-                              <ChevronRight size={20} />
-                            </button>
-                          </>
-                        )}
-                      </div>
+                      {zoomProject.videos ? (
+                        /* ── VIDEO CAROUSEL (Aviation-style) ── */
+                        <>
+                          <div className="relative flex items-center justify-center min-h-[40vh] md:min-h-[55vh] flex-1 bg-black">
+                            <video
+                              key={mediaIndex}
+                              src={zoomProject.videos[mediaIndex]}
+                              controls
+                              className="w-full max-h-[55vh] object-contain"
+                              preload="metadata"
+                            />
+                            {zoomProject.videos.length > 1 && (
+                              <>
+                                <button
+                                  onClick={prev}
+                                  disabled={mediaIndex === 0}
+                                  className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white disabled:opacity-25 transition-all z-10"
+                                >
+                                  <ChevronLeft size={20} />
+                                </button>
+                                <button
+                                  onClick={() => next(zoomProject.videos!.length)}
+                                  disabled={mediaIndex === zoomProject.videos.length - 1}
+                                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white disabled:opacity-25 transition-all z-10"
+                                >
+                                  <ChevronRight size={20} />
+                                </button>
+                              </>
+                            )}
+                          </div>
 
-                      {/* Thumbnail strip */}
-                      {hasMultiple && (
-                        <div className="flex gap-2 p-3 overflow-x-auto bg-slate-900 border-t border-slate-800">
-                          {mediaList.map((src, i) => (
-                            <button
-                              key={i}
-                              onClick={() => setMediaIndex(i)}
-                              className={`shrink-0 w-14 h-10 rounded overflow-hidden border-2 transition-all ${
-                                i === mediaIndex ? 'border-[#00d2ff]' : 'border-transparent opacity-60 hover:opacity-100'
-                              }`}
-                            >
-                              <img src={src} alt="" className="w-full h-full object-cover" />
-                            </button>
-                          ))}
-                        </div>
-                      )}
+                          {/* Video thumbnail strip */}
+                          <div className="flex gap-2 p-3 overflow-x-auto bg-slate-900 border-t border-slate-800">
+                            {zoomProject.videos.map((_, i) => (
+                              <button
+                                key={i}
+                                onClick={() => setMediaIndex(i)}
+                                className={`shrink-0 w-14 h-10 rounded flex items-center justify-center border-2 transition-all font-bold text-xs ${
+                                  i === mediaIndex
+                                    ? 'border-[#00d2ff] bg-[#00d2ff]/20 text-[#00d2ff]'
+                                    : 'border-slate-700 bg-slate-800 text-slate-400 hover:border-slate-500 hover:text-white'
+                                }`}
+                              >
+                                <Play size={10} className={i === mediaIndex ? 'fill-[#00d2ff]' : 'fill-slate-400'} />
+                                <span className="ml-1">{i + 1}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </>
+                      ) : (
+                        /* ── IMAGE CAROUSEL (Roofing-style) ── */
+                        <>
+                          <div className="relative flex items-center justify-center min-h-[40vh] md:min-h-[55vh] flex-1">
+                            <img
+                              src={mediaList[mediaIndex]}
+                              alt={`${zoomProject.title} – photo ${mediaIndex + 1}`}
+                              className="max-h-[55vh] max-w-full object-contain"
+                            />
+                            {hasMultiple && (
+                              <>
+                                <button
+                                  onClick={prev}
+                                  disabled={mediaIndex === 0}
+                                  className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white disabled:opacity-30 transition-all"
+                                >
+                                  <ChevronLeft size={20} />
+                                </button>
+                                <button
+                                  onClick={() => next(mediaList.length)}
+                                  disabled={mediaIndex === mediaList.length - 1}
+                                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white disabled:opacity-30 transition-all"
+                                >
+                                  <ChevronRight size={20} />
+                                </button>
+                              </>
+                            )}
+                          </div>
 
-                      {/* Video player */}
-                      {zoomProject.video && (
-                        <div className="border-t border-slate-800 p-4 bg-slate-900">
-                          <p className="text-[10px] font-mono uppercase tracking-widest text-[#00d2ff] font-bold mb-2 flex items-center gap-1">
-                            <Play size={10} className="fill-[#00d2ff]" /> Project Video
-                          </p>
-                          <video
-                            src={zoomProject.video}
-                            controls
-                            className="w-full rounded-lg max-h-48 bg-black"
-                            preload="metadata"
-                          />
-                        </div>
+                          {hasMultiple && (
+                            <div className="flex gap-2 p-3 overflow-x-auto bg-slate-900 border-t border-slate-800">
+                              {mediaList.map((src, i) => (
+                                <button
+                                  key={i}
+                                  onClick={() => setMediaIndex(i)}
+                                  className={`shrink-0 w-14 h-10 rounded overflow-hidden border-2 transition-all ${
+                                    i === mediaIndex ? 'border-[#00d2ff]' : 'border-transparent opacity-60 hover:opacity-100'
+                                  }`}
+                                >
+                                  <img src={src} alt="" className="w-full h-full object-cover" />
+                                </button>
+                              ))}
+                            </div>
+                          )}
+
+                          {zoomProject.video && (
+                            <div className="border-t border-slate-800 p-4 bg-slate-900">
+                              <p className="text-[10px] font-mono uppercase tracking-widest text-[#00d2ff] font-bold mb-2 flex items-center gap-1">
+                                <Play size={10} className="fill-[#00d2ff]" /> Project Video
+                              </p>
+                              <video
+                                src={zoomProject.video}
+                                controls
+                                className="w-full rounded-lg max-h-48 bg-black"
+                                preload="metadata"
+                              />
+                            </div>
+                          )}
+                        </>
                       )}
                     </div>
 
@@ -248,7 +299,12 @@ export default function Projects() {
                         <p className="text-sm text-slate-600 leading-relaxed font-semibold">
                           {zoomProject.description}
                         </p>
-                        {hasMultiple && (
+                        {zoomProject.videos && zoomProject.videos.length > 1 && (
+                          <p className="text-[11px] text-slate-400 font-mono">
+                            Video {mediaIndex + 1} of {zoomProject.videos.length}
+                          </p>
+                        )}
+                        {!zoomProject.videos && hasMultiple && (
                           <p className="text-[11px] text-slate-400 font-mono">
                             Photo {mediaIndex + 1} of {mediaList.length}
                           </p>
