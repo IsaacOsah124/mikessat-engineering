@@ -15,6 +15,7 @@ import roofingImg3 from '@/assets/projects/roofing/WhatsApp Image 2025-12-07 at 
 
 // Aviation Social Centre project media
 import aviationCardImg from '@/assets/images/banner1.jpg';
+import perimeterImg from '@/assets/images/banner12.jpg';
 
 // Videos are served from /public/videos/ — NOT imported through Vite
 // This keeps them off the JS bundle and lets Vercel's CDN serve them directly.
@@ -233,7 +234,7 @@ export const PROJECTS: Project[] = [
     title: "Modern Smart Perimeter Control",
     category: "Security",
     description: "Installation of high-tension security electric fencing with integrated alarm triggers and SMS notification system for a luxury estate in East Legon, Accra.",
-    image: "https://images.unsplash.com/photo-1508873696983-2df519f0397e?auto=format&fit=crop&w=800&q=80"
+    image: perimeterImg
   },
   {
     id: 2,

@@ -115,7 +115,7 @@ export default function ServiceModal({ service, onClose, onQuoteRequest }: Servi
                 Inquire & Get Free Quote
               </button>
               <a
-                href="https://wa.me/233246445790"
+                href="https://wa.me/233530452167"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-bold text-sm transition-all text-center"

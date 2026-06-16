@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Phone, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import logoImg from '@/assets/images/logo.png';
+import logoImg from '@/assets/images/logo-new.png';
 
 interface NavbarProps {
   currentPage: string;
@@ -69,8 +69,8 @@ export default function Navbar({ currentPage, theme, onThemeToggle }: NavbarProp
             className="flex items-center gap-2 group"
           >
             <div className="flex items-center">
-              <div className="bg-white rounded-lg px-2.5 py-1.5 shadow-sm">
-                <img src={logoImg} alt="Mikessat Engineering" className="h-8 w-auto object-contain" />
+              <div className="bg-white rounded-lg px-2 py-1 shadow-sm">
+                <img src={logoImg} alt="Mikessat Engineering" className="h-12 w-auto object-contain" />
               </div>
             </div>
           </a>

@@ -1,5 +1,5 @@
 import { Facebook, Instagram, Phone, Mail, Clock, ArrowRight } from 'lucide-react';
-import logoImg from '@/assets/images/logo.png';
+import logoImg from '@/assets/images/logo-new.png';
 
 export default function Footer() {
   const currentYear = 2026; // Match system year
@@ -84,8 +84,8 @@ export default function Footer() {
               className="inline-block"
             >
               <div className="flex items-center">
-                <div className="bg-white rounded-lg px-2.5 py-1.5 shadow-sm">
-                  <img src={logoImg} alt="Mikessat Engineering" className="h-7 w-auto object-contain" />
+                <div className="bg-white rounded-lg px-2 py-1 shadow-sm">
+                  <img src={logoImg} alt="Mikessat Engineering" className="h-10 w-auto object-contain" />
                 </div>
               </div>
             </a>

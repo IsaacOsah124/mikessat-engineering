@@ -21,7 +21,7 @@ export default function WhatsAppButton() {
       </AnimatePresence>
 
       <motion.a
-        href="https://wa.me/233246445790?text=Hello%20Mikessat%20Engineering%2C%20I%20would%20like%20to%20enquire%20about%20your%20services."
+        href="https://wa.me/233530452167?text=Hello%20Mikessat%20Engineering%2C%20I%20would%20like%20to%20enquire%20about%20your%20services."
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with Mikessat Engineering on WhatsApp"

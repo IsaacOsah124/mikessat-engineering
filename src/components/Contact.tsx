@@ -360,7 +360,7 @@ export default function Contact({ preselectedService = '' }: ContactProps) {
                     <p className="text-[10px] font-mono uppercase tracking-widest text-[#0A5C9E] font-extrabold">Working Hours</p>
                     <div className="text-slate-800 text-sm font-bold mt-1 space-y-1">
                       <p>Mon - Fri: <span className="text-[#0A5C9E]">8:00 AM - 6:00 PM</span></p>
-                      <p>Saturdays: <span className="text-slate-500">9:00 AM - 2:00 PM</span></p>
+                      <p>Saturdays: <span className="text-slate-500">Closed</span></p>
                       <p className="text-xs text-emerald-600 font-extrabold mt-1">Emergency Call Outs: 24/7 Standby</p>
                     </div>
                   </div>
@@ -370,7 +370,7 @@ export default function Contact({ preselectedService = '' }: ContactProps) {
               {/* Dynamic WhatsApp Trigger */}
               <div className="border-t border-slate-100 pt-6">
                 <a
-                  href="https://wa.me/233246445790?text=Hello%20Mikessat%20Engineering,%20I%2527m%20interested%20in%20obtaining%20a%20commercial%20quote."
+                  href="https://wa.me/233530452167?text=Hello%20Mikessat%20Engineering,%20I%2527m%20interested%20in%20obtaining%20a%20commercial%20quote."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-3 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all text-center border border-transparent"
